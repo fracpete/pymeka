@@ -1,2 +1,2 @@
 # pymeka
-Jep-based Python wrapper for Meka.
+Jpype-based Python wrapper for Meka.
