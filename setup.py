@@ -57,6 +57,7 @@ setup(
     author='Peter "fracpete" Reutemann',
     author_email='fracpete@waikato.ac.nz',
     install_requires=[
+        "jpype1",
         "numpy",
         "packaging",
         "configurable-objects",
