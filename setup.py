@@ -58,5 +58,6 @@ setup(
     author_email='fracpete@waikato.ac.nz',
     install_requires=[
         "python-weka-wrapper3>=0.3.2",
+        "requests",
     ],
 )
