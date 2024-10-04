@@ -66,6 +66,113 @@ For more information, check out the help of the `jvm` module:
    help(jvm.stop)
 
 
+Weka Packages
+-------------
+
+The following examples show how to list, install and uninstall an *official* Weka package:
+
+.. code-block:: python
+
+   import weka.core.packages as packages
+   items = packages.all_packages()
+   for item in items:
+       if item.name == "CLOPE":
+           print(item.name + " " + item.url)
+
+   packages.install_package("CLOPE")
+   items = packages.installed_packages()
+   for item in items:
+       print(item.name + " " + item.url)
+
+   packages.uninstall_package("CLOPE")
+   items = packages.installed_packages()
+   for item in items:
+       print(item.name + " " + item.url)
+
+You can also install *unofficial* packages. The following example installs a previously downloaded zip file:
+
+.. code-block:: python
+
+   import weka.core.packages as packages
+   success = packages.install_package("/some/where/funky-package-1.0.0.zip")
+   print(success)
+
+And here installing it directly from a URL:
+
+.. code-block:: python
+
+   import weka.core.packages as packages
+   info = packages.install_package("http://some.server.com/funky-package-1.0.0.zip", details=True)
+   print(info)
+
+Using the `details=True` flag, you can receive a dictionary instead of a simple boolean.
+This dictionary consists of:
+
+* `from_repo`: whether the package was installed from the repo or not (i.e., unofficial URL or local archive)
+* `version`: the version (only for packages from the repo)
+* `error`: any error that may have occurred during installation
+* `install_message`: optional message from the package maintainer on the installation
+* `success`: whether the package was installed successfully
+
+Of course, you can also install multiple packages in one go using the
+`install_packages` method:
+
+.. code-block:: python
+
+   import weka.core.packages as packages
+   info = packages.install_packages([
+       "http://some.server.com/funky-package-1.0.0.zip",
+       "http://some.server.com/cool-package-2.0.0.zip",
+       "http://some.server.com/fancy-package-1.1.0.zip",
+   ], fail_fast=False, details=True)
+
+This method offers the `details` flag as well and returns a dictionary with
+the package name/URL/file name as the key and the information dictionary as
+the value.
+
+With the `fail_fast` flag you can control whether to stop the installation process
+as soon as the first package fails to install (`fail_fast=True`) or keep trying to
+install them (`fail_fast=False`).
+
+You can include automatic installation of packages in your scripts:
+
+.. code-block:: python
+
+   import sys
+   import weka.core.jvm as jvm
+   from weka.core.packages import install_missing_package, install_missing_packages, LATEST
+
+   # installs a single package (if missing) and exits if installation occurred (outputs messages in console)
+   install_missing_package("CLOPE", stop_jvm_and_exit=True)
+
+   # installs any missing package, outputs messages in console, but restarting JVM is left to script
+   success, exit_required = install_missing_packages([("CLOPE", LATEST), ("gridSearch", LATEST), ("multisearch", LATEST)])
+   if exit_required:
+       jvm.stop()
+       sys.exit(0)
+
+
+You can also output suggested Weka packages for partial class/package names or exact class names (default is partial
+string matching):
+
+.. code-block:: python
+
+   # suggest package for classifier 'RBFClassifier'
+   search = "RBFClassifier"
+   suggestions = packages.suggest_package(search)
+   print("suggested packages for " + search + ":", suggestions)
+
+   # suggest package for package '.ft.'
+   search = ".ft."
+   suggestions = packages.suggest_package(search)
+   print("suggested packages for " + search + ":", suggestions)
+
+   # suggest package for classifier 'weka.classifiers.trees.J48graft'
+   search = "weka.classifiers.trees.J48graft"
+   suggestions = packages.suggest_package(search, exact=True)
+   print("suggested packages for " + search + ":", suggestions)
+
+
 
 Stop JVM
 --------
