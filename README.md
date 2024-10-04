@@ -10,6 +10,9 @@ the multi-label/multi-target extension to [Weka](https://ml.cms.waikato.ac.nz/we
 
 ## Installation
 
+First, follow the install instructions for [python-weka-wrapper3](https://fracpete.github.io/python-weka-wrapper3/install.html)
+and then install **pymeka** itself:
+
 From PyPI:
 
 ```bash
