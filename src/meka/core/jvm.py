@@ -62,12 +62,15 @@ def install_meka():
     """
     url = os.environ.get(ENV_MEKA_URL, MEKA_URL)
     logger.info("Downloading Meka from: %s" % url)
-    r = requests.get(url, stream=True)
-    tmp = tempfile.mktemp(suffix=".zip")
-    with open(tmp, 'wb') as fp:
-        for chunk in r.iter_content(chunk_size=1024):
-            if chunk:  # filter out keep-alive new chunks
-                fp.write(chunk)
+    if url.startswith("http"):
+        r = requests.get(url, stream=True)
+        tmp = tempfile.mktemp(suffix=".zip")
+        with open(tmp, 'wb') as fp:
+            for chunk in r.iter_content(chunk_size=1024):
+                if chunk:  # filter out keep-alive new chunks
+                    fp.write(chunk)
+    else:
+        tmp = url
     out_dir = lib_dir()
     with ZipFile(tmp, "r") as zf:
         for name in zf.namelist():

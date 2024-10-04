@@ -41,3 +41,9 @@ environment variable. For example for using a snapshot:
 ```bash
 MEKA_URL=https://adams.cms.waikato.ac.nz/snapshots/meka/meka-snapshot.zip
 ```
+
+If you want to install from a local zip file (snapshot or release archive), then you can do that as well:
+
+```bash
+MEKA_URL=/some/where/meka-snapshot.zip
+```
