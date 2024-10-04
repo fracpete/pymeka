@@ -8,6 +8,7 @@ https://fracpete.github.io/python-weka-wrapper3/install.html
 
 Once python-weka-wrapper3 has been installed successfully, you can install pymeka.
 
+
 PyPI
 ----
 
@@ -17,6 +18,7 @@ Installing the latest published version from PyPI.org is done as follows:
 pip install pymeka
 ```
 
+
 Github
 ------
 
@@ -24,4 +26,18 @@ If you want to install the latest source code, then execute the following:
 
 ```bash
 pip install git+https://github.com/fracpete/pymeka.git
+```
+
+
+Meka Java binaries
+------------------
+
+The first time that the JVM is being launched (using `meka.core.jvm.start()`), the Meka binaries will
+get downloaded and decompressed automatically.
+
+If you want to override the default URL, e.g., for using a snapshot, you can set the `MEKA_URL`
+environment variable. For example for using a snapshot:
+
+```bash
+MEKA_URL=https://adams.cms.waikato.ac.nz/snapshots/meka/meka-snapshot.zip
 ```

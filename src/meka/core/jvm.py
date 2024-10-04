@@ -31,8 +31,11 @@ started = None
 with_package_support = None
 """ whether JVM was started with package support """
 
-
 MEKA_URL = "https://github.com/Waikato/meka/releases/download/meka-1.9.8/meka-release-1.9.8-bin.zip"
+""" default download URL. """
+
+ENV_MEKA_URL = "MEKA_URL"
+""" environment variable for overriding the default download URL. """
 
 
 # logging setup
@@ -57,8 +60,9 @@ def install_meka():
     """
     Downloads and installs the Meka jars in the lib directory.
     """
-    logger.info("Downloading Meka from: %s" % MEKA_URL)
-    r = requests.get(MEKA_URL, stream=True)
+    url = os.environ.get(ENV_MEKA_URL, MEKA_URL)
+    logger.info("Downloading Meka from: %s" % url)
+    r = requests.get(url, stream=True)
     tmp = tempfile.mktemp(suffix=".zip")
     with open(tmp, 'wb') as fp:
         for chunk in r.iter_content(chunk_size=1024):
