@@ -109,6 +109,21 @@ For multi-target classifiers, like `meka.classifiers.multitargete.CC`, you would
    print(br.model)
 
 
+Build and evaluate model
+------------------------
+
+If you have a train and test set, then you can use these to train and evaluate a classifier as follows:
+
+.. code-block:: python
+
+   train = ...  # the training set
+   test = ...  # the test set
+   br = MultiTargetClassifier(classname="meka.classifiers.multitarget.CC")
+   result = Evaluation.evaluate_model(br, train, test, top="PCut1", vop="3")
+   print(result)
+
+
+
 Weka Packages
 -------------
 
