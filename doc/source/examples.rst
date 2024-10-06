@@ -123,6 +123,19 @@ If you have a train and test set, then you can use these to train and evaluate a
    print(result)
 
 
+Train/test split
+----------------
+
+You can easily generate a train/test split from a single dataset by using the `train_test_split`
+class method of the `weka.core.dataset.Instances` class:
+
+.. code-block:: python
+
+   from weka.core.classes import Random
+   from weka.core.dataset import Instances
+   data = ...  # the full dataset
+   train, test = Instances.train_test_split(data, 66.0, Random(1))
+
 
 Weka Packages
 -------------
