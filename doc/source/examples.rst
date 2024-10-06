@@ -66,6 +66,49 @@ For more information, check out the help of the `jvm` module:
    help(jvm.stop)
 
 
+Load data
+---------
+
+For loading data, you can use functionality supplied by the python-weka-wrapper3 library (which is a dependency
+for pymeka). Once loaded, you need to call the `prepare_data` function of the `meka.core.mlutils` module to
+interpret the relation name for identifying the class attributes.
+
+Perform automatic loading of known file types using the `load_any_file` function:
+
+.. code-block:: python
+
+   from weka.core.converters import load_any_file
+   from meka.core.mlutils import prepare_data
+   data = load_any_file("/some/where/Music.arff")
+   prepare_data(data)
+
+
+Build multi-label classifier
+----------------------------
+
+Once you have data loaded, you can build your classifier, e.g., a multi-label one like `meka.classifiers.multilabel.BR`:
+
+.. code-block:: python
+
+   from meka.classifiers import MultiLabelClassifier
+   br = MultiLabelClassifier(classname="meka.classifiers.multilabel.BR")
+   br.build_classifier(data)
+   print(br.model)
+
+
+Build multi-target classifier
+-----------------------------
+
+For multi-target classifiers, like `meka.classifiers.multitargete.CC`, you would use the following:
+
+.. code-block:: python
+
+   from meka.classifiers import MultiTargetClassifier
+   br = MultiTargetClassifier(classname="meka.classifiers.multitarget.CC")
+   br.build_classifier(data)
+   print(br.model)
+
+
 Weka Packages
 -------------
 
