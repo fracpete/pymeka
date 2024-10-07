@@ -34,11 +34,13 @@ class IncrementalEvaluation:
         :return: the generated results
         :rtype: Result
         """
-        jobj = JClass("meka.classifiers.incremental.IncrementalEvaluation").runExperiment(classifier.jobject, options)
+        jobj = JClass("meka.classifiers.incremental.IncrementalEvaluation").runExperiment(
+            classifier.jobject, options)
         return Result(jobject=jobj)
 
     @classmethod
-    def evaluate_batch_window(cls, classifier: MultiXClassifier, data: Instances, num_windows: int = 20, r_labeled: float = 1.0, top: str = "PCut1", vop: str = "3") -> Result:
+    def evaluate_batch_window(cls, classifier: MultiXClassifier, data: Instances, num_windows: int = 20,
+                              r_labeled: float = 1.0, top: str = "PCut1", vop: str = "3") -> Result:
         """
          Evaluate a multi-label data-stream model over windows.
 
@@ -57,11 +59,13 @@ class IncrementalEvaluation:
         :return: The Result on the final window (but it contains samples of all the other evaluated windows). The window is sampled every N/numWindows instances, for a total of numWindows windows.
         :rtype: Result
         """
-        jobj = JClass("meka.classifiers.incremental.IncrementalEvaluation").evaluateModelBatchWindow(classifier.jobject, data.jobject, num_windows, r_labeled, top, vop)
+        jobj = JClass("meka.classifiers.incremental.IncrementalEvaluation").evaluateModelBatchWindow(
+            classifier.jobject, data.jobject, num_windows, r_labeled, top, vop)
         return Result(jobject=jobj)
 
     @classmethod
-    def evaluate_prequential(cls, classifier: MultiXClassifier, data: Instances, window_size: int = 20, r_labeled: float = 1.0, top: str = "PCut1", vop: str = "3") -> Result:
+    def evaluate_prequential(cls, classifier: MultiXClassifier, data: Instances, window_size: int = 20,
+                             r_labeled: float = 1.0, top: str = "PCut1", vop: str = "3") -> Result:
         """
         Prequential Evaluation - Accuracy since the start of evaluation.
 
@@ -80,5 +84,6 @@ class IncrementalEvaluation:
         :return: the evaluation results
         :rtype: Result
         """
-        jobj = JClass("meka.classifiers.incremental.IncrementalEvaluation").evaluateModelPrequentialBasic(classifier.jobject, data.jobject, window_size, r_labeled, top, vop)
+        jobj = JClass("meka.classifiers.incremental.IncrementalEvaluation").evaluateModelPrequentialBasic(
+            classifier.jobject, data.jobject, window_size, r_labeled, top, vop)
         return Result(jobject=jobj)

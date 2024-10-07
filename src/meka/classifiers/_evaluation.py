@@ -13,7 +13,8 @@ class Evaluation:
     """
 
     @classmethod
-    def evaluate_model(cls, classifier: MultiXClassifier, train: Instances, test: Instances, top: str = "PCut1", vop: str = "1") -> Result:
+    def evaluate_model(cls, classifier: MultiXClassifier, train: Instances, test: Instances,
+                       top: str = "PCut1", vop: str = "1") -> Result:
         """
         Builds the classifier on the training data and evaluates it on the test set.
 
@@ -30,11 +31,13 @@ class Evaluation:
         :return: raw prediction data with evaluation statistics included.
         :rtype: Result
         """
-        jobj = JClass("meka.classifiers.multilabel.Evaluation").evaluateModel(classifier.jobject, train.jobject, test.jobject, top, vop)
+        jobj = JClass("meka.classifiers.multilabel.Evaluation").evaluateModel(
+            classifier.jobject, train.jobject, test.jobject, top, vop)
         return Result(jobject=jobj)
 
     @classmethod
-    def cv_model(cls, classifier: MultiXClassifier, data: Instances, num_folds: int = 10, top: str = "PCut1", vop: str = "1") -> Result:
+    def cv_model(cls, classifier: MultiXClassifier, data: Instances, num_folds: int = 10,
+                 top: str = "PCut1", vop: str = "1") -> Result:
         """
         Cross-validate the specified classifier on the supplied dataset and with the specified number of folds.
 
@@ -51,7 +54,8 @@ class Evaluation:
         :return: raw prediction data with evaluation statistics included.
         :rtype: Result
         """
-        jobj = JClass("meka.classifiers.multilabel.Evaluation").cvModel(classifier.jobject, data.jobject, num_folds, top, vop)
+        jobj = JClass("meka.classifiers.multilabel.Evaluation").cvModel(
+            classifier.jobject, data.jobject, num_folds, top, vop)
         return Result(jobject=jobj)
 
     @classmethod
@@ -68,7 +72,8 @@ class Evaluation:
         :return: raw prediction data with evaluation statistics included.
         :rtype: Result
         """
-        if multi_threaded and is_instance_of(classifier.jobject, "meka.classifiers.multilabel.MultiLabelClassifierThreaded"):
+        if multi_threaded and is_instance_of(
+                classifier.jobject, "meka.classifiers.multilabel.MultiLabelClassifierThreaded"):
             jobj = JClass("meka.classifiers.multilabel.Evaluation").testClassifierM(classifier.jobject, test.jobject)
         else:
             jobj = JClass("meka.classifiers.multilabel.Evaluation").testClassifier(classifier.jobject, test.jobject)
