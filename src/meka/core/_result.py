@@ -1,3 +1,4 @@
+import numpy as np
 from typing import List, Set
 from jpype import JClass
 from weka.core.classes import JavaObject
@@ -32,8 +33,8 @@ class Result(JavaObject):
         """
         Returns the number of value-prediction pairs stared in this Result.
 
-        :return: the number or pairs
-        :rtype: innt
+        :return: the number of pairs
+        :rtype: int
         """
         return self.jobject.size()
 
@@ -98,12 +99,28 @@ class Result(JavaObject):
         return self.jobject.colConfidence(j)
 
     def all_predictions(self, t: float = None):
-        # TODO
-        return None
+        """
+        Returns all prediction confidences in an L * N matrix (2d array). Optionally according to threshold t.
+
+        :param t: the optional threshold
+        :type t: float
+        :return: the matrix
+        :rtype: np.ndarray
+        """
+        if t is None:
+            m = self.jobject.allPredictions()
+        else:
+            m = self.jobject.allPredictions(t)
+        return np.asarray(m)
 
     def all_true_values(self):
-        # TODO
-        return None
+        """
+        Retrieve all true values in an L x N matrix.
+
+        :return: the matrix
+        :rtype: np.ndarray
+        """
+        return np.asarray(self.jobject.allTrueValues())
 
     def available_metrics(self) -> Set[str]:
         """
