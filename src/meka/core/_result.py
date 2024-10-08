@@ -1,8 +1,8 @@
 import numpy as np
-from typing import List, Set
+from typing import List, Set, Any, Dict
 from jpype import JClass
 from weka.core.classes import JavaObject
-from weka.core.dataset import Instance
+from weka.core.dataset import Instance, Instances
 
 
 class Result(JavaObject):
@@ -131,3 +131,143 @@ class Result(JavaObject):
         """
         return self.jobject.availableMetrics()
 
+    def set_measurement(self, metric: str, stat: Any):
+        """
+        Sets the measurement for the specified metric.
+
+        :param metric: the metric to set
+        :type metric: str
+        :param stat: the metric value
+        """
+        self.jobject.setMeasurement(metric, stat)
+
+    def get_measurement(self, metric: str) -> Any:
+        """
+        Retrieves the measurement for the specified metric.
+
+        :param metric: the metric to retrieve
+        :type metric: str
+        :return: the measurement
+        """
+        return self.jobject.getMeasurement(metric)
+
+    def set_value(self, metric: str, value: float):
+        """
+        Sets the value for the specified metric.
+
+        :param metric: the metric to set
+        :type metric: str
+        :param value: the value to set
+        :type value: float
+        """
+        self.jobject.setValue(metric, value)
+
+    def get_value(self, metric: str) -> float:
+        """
+        Retrieves the value for the specified metric.
+
+        :param metric: the metric to retrieve
+        :type metric: str
+        :return: the associated value
+        :rtype: float
+        """
+        return self.jobject.getValue(metric)
+
+    def set_info(self, cat: str, val: str):
+        """
+        Sets the value in the information category.
+
+        :param cat: the category to store under
+        :type cat: str
+        :param val: the value to set
+        :type val: str
+        """
+        self.jobject.setInfo(cat, val)
+
+    def get_info(self, cat: str) -> str:
+        """
+        Retrieves the value from the information category.
+
+        :param cat: the category to retrieve
+        :type cat: str
+        :return: the value
+        :rtype: str
+        """
+        return self.jobject.getValue(cat)
+
+    def set_model(self, key: str, val: str):
+        """
+        Stores the model under the specified key.
+
+        :param key: the key to store the model under
+        :type key: str
+        :type val: the model string
+        :type val: str
+        """
+        self.jobject.setModel(key, val)
+
+    def get_model(self, key: str) -> str:
+        """
+        Retrieves the specified model string.
+
+        :param key: the key of the model to retrieve
+        :type key: str
+        :return: the model string
+        :rtype: str
+        """
+        return self.jobject.getModel(key)
+
+    @classmethod
+    def stats(cls, r: 'Result', vop: str) -> Dict[str, Any]:
+        """
+        Return the evaluation statistics given predictions and real values stored in the result.
+        In the multi-label case, a Threshold category must exist, containing a string
+        defining the type of threshold we want to use/calibrate.
+
+        :param r: the result object to use
+        :type r: Result
+        :param vop: the verbosity option
+        :type vop: str
+        :return: the stats
+        :rtype: dict
+        """
+        return JClass("meka.core.Result").getStats(r.jobject, vop)
+
+    @classmethod
+    def result_as_string(cls, r: 'Result', num_decimals: int = 3) -> str:
+        """
+        Print out each prediction in a Result (to a certain number of decimal points) along with its true labelset.
+
+        :param r: the Result to process
+        :type r: Result
+        :param num_decimals: the number of decimals to use
+        :type num_decimals: int
+        :return: the generated output
+        :rtype: str
+        """
+        return JClass("meka.core.Result").getResultAsString(r.jobject, num_decimals)
+
+    @classmethod
+    def predictions_as_instances(cls, r: 'Result') -> Instances:
+        """
+        Convert predictions into Instances (and true values).
+        The first L attributes (for L labels) hold the true values, and the next L attributes hold the predictions.
+
+        :param r: the Result to process
+        :type r: Result
+        :return: the generated data
+        :rtype: Instances
+        """
+        return Instances(jobject=JClass("meka.core.Result").getPredictionsAsInstances(r.jobject))
+
+    @classmethod
+    def results_as_instances(cls, metrics: List[Dict[str, Any]]) -> Instances:
+        """
+        Convert a list of Results into Instances.
+
+        :param metrics: the results to convert
+        :type metrics: list
+        :return: the generated data
+        :rtype: Instances
+        """
+        return Instances(JClass("meka.core.Result").getResultsAsInstances(metrics))
