@@ -22,7 +22,7 @@ class MultiLabelClassifier(MultiXClassifier):
         if jobject is None:
             jobject = MultiLabelClassifier.new_instance(classname)
         self.enforce_type(jobject, "meka.classifiers.multilabel.MultiLabelClassifier")
-        super(MultiXClassifier, self).__init__(jobject=jobject, options=options)
+        super().__init__(jobject=jobject, options=options)
 
     @classmethod
     def make_copies(cls, classifier: 'MultiLabelClassifier', num: int) -> List['MultiLabelClassifier']:

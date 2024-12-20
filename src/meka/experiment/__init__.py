@@ -1,6 +1,7 @@
-from ._datasetproviders import DatasetProvider
+from ._datasetproviders import DatasetProvider, LocalDatasetProvider, MultiDatasetProvider
 from ._evaluators import Evaluator
-from ._evaluationstatistics import EvaluationStatisticsHandler
-from ._evaluationstatisticsexporters import EvaluationStatisticsExporter
+from ._evaluationstatistics import EvaluationStatistics
+from ._evaluationstatisticshandlers import EvaluationStatisticsHandler
+from ._statisticsexporters import EvaluationStatisticsExporter
 from ._filehandlers import ExperimentFileHandler
 from ._experiments import Experiment

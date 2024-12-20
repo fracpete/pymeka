@@ -2,19 +2,22 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="744.09448819"
    height="1052.3622047"
    id="svg2"
    version="1.1"
-   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
    sodipodi:docname="logo.svg"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:dc="http://purl.org/dc/elements/1.1/">
+   inkscape:export-filename="/home/fracpete/development/personal/projects/pymeka/doc/source/_static/logo.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -25,16 +28,16 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.979899"
-     inkscape:cx="495.9849"
-     inkscape:cy="323.24881"
+     inkscape:cx="405.07117"
+     inkscape:cy="626.29457"
      inkscape:document-units="px"
      inkscape:current-layer="g2997"
      showgrid="false"
-     inkscape:window-width="1482"
-     inkscape:window-height="754"
+     inkscape:window-width="1920"
+     inkscape:window-height="1022"
      inkscape:window-x="0"
-     inkscape:window-y="22"
-     inkscape:window-maximized="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
      inkscape:pagecheckerboard="0" />
   <metadata
      id="metadata7">
@@ -59,7 +62,9 @@
          y="345.34131"
          x="282.85715"
          style="font-style:normal;font-weight:normal;line-height:0%;font-family:'Bitstream Vera Sans';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-         xml:space="preserve"><tspan
+         xml:space="preserve"
+         inkscape:export-xdpi="232.03"
+         inkscape:export-ydpi="232.03"><tspan
            y="345.34131"
            x="282.85715"
            id="tspan2987"
@@ -70,18 +75,22 @@
          y="345.34131"
          x="390.45389"
          style="font-style:normal;font-weight:normal;line-height:0%;font-family:'Bitstream Vera Sans';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-         xml:space="preserve"><tspan
+         xml:space="preserve"
+         inkscape:export-xdpi="232.03"
+         inkscape:export-ydpi="232.03"><tspan
            y="345.34131"
            x="390.45389"
            id="tspan2991"
            sodipodi:role="line"
-           style="font-size:40px;line-height:1.25">}3</tspan></text>
+           style="font-size:40px;line-height:1.25">}</tspan></text>
       <text
          id="text2993"
          y="331.45319"
          x="372.78268"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:0%;font-family:'Bitstream Vera Sans';-inkscape-font-specification:'Bitstream Vera Sans Bold';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#6e0909;fill-opacity:1;stroke:none"
-         xml:space="preserve"><tspan
+         xml:space="preserve"
+         inkscape:export-xdpi="232.03"
+         inkscape:export-ydpi="232.03"><tspan
            y="331.45319"
            x="372.78268"
            id="tspan2995"

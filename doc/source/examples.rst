@@ -66,6 +66,77 @@ For more information, check out the help of the `jvm` module:
    help(jvm.stop)
 
 
+Load data
+---------
+
+For loading data, you can use functionality supplied by the python-weka-wrapper3 library (which is a dependency
+for pymeka). Once loaded, you need to call the `prepare_data` function of the `meka.core.mlutils` module to
+interpret the relation name for identifying the class attributes.
+
+Perform automatic loading of known file types using the `load_any_file` function:
+
+.. code-block:: python
+
+   from weka.core.converters import load_any_file
+   from meka.core.mlutils import prepare_data
+   data = load_any_file("/some/where/Music.arff")
+   prepare_data(data)
+
+
+Build multi-label classifier
+----------------------------
+
+Once you have data loaded, you can build your classifier, e.g., a multi-label one like `meka.classifiers.multilabel.BR`:
+
+.. code-block:: python
+
+   from meka.classifiers import MultiLabelClassifier
+   br = MultiLabelClassifier(classname="meka.classifiers.multilabel.BR")
+   br.build_classifier(data)
+   print(br.model)
+
+
+Build multi-target classifier
+-----------------------------
+
+For multi-target classifiers, like `meka.classifiers.multitargete.CC`, you would use the following:
+
+.. code-block:: python
+
+   from meka.classifiers import MultiTargetClassifier
+   br = MultiTargetClassifier(classname="meka.classifiers.multitarget.CC")
+   br.build_classifier(data)
+   print(br.model)
+
+
+Build and evaluate model
+------------------------
+
+If you have a train and test set, then you can use these to train and evaluate a classifier as follows:
+
+.. code-block:: python
+
+   train = ...  # the training set
+   test = ...  # the test set
+   br = MultiTargetClassifier(classname="meka.classifiers.multitarget.CC")
+   result = Evaluation.evaluate_model(br, train, test, top="PCut1", vop="3")
+   print(result)
+
+
+Train/test split
+----------------
+
+You can easily generate a train/test split from a single dataset by using the `train_test_split`
+class method of the `weka.core.dataset.Instances` class:
+
+.. code-block:: python
+
+   from weka.core.classes import Random
+   from weka.core.dataset import Instances
+   data = ...  # the full dataset
+   train, test = Instances.train_test_split(data, 66.0, Random(1))
+
+
 Weka Packages
 -------------
 

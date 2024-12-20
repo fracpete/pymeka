@@ -23,7 +23,7 @@ class MultiTargetClassifier(MultiXClassifier):
         if jobject is None:
             jobject = MultiTargetClassifier.new_instance(classname)
         self.enforce_type(jobject, "meka.classifiers.multitarget.MultiTargetClassifier")
-        super(MultiXClassifier, self).__init__(jobject=jobject, options=options)
+        super().__init__(jobject=jobject, options=options)
 
     @classmethod
     def make_copies(cls, classifier: 'MultiTargetClassifier', num: int) -> List['MultiTargetClassifier']:

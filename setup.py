@@ -57,6 +57,6 @@ setup(
     author='Peter "fracpete" Reutemann',
     author_email='fracpete@waikato.ac.nz',
     install_requires=[
-        "python_weka_wrapper3>=0.3.2",
+        "python-weka-wrapper3>=0.3.2",
     ],
 )
